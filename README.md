@@ -9,7 +9,6 @@ See https://github.com/filetrust/icap-infrastructure/tree/main/adaptation/templa
 ### Component repo 
 - https://github.com/filetrust/mvp-icap-service 
 - https://github.com/filetrust/icap-adaptation-service
-- https://github.com/filetrust/icap-adaptation-service
 - https://github.com/filetrust/icap-request-processing
 
 
