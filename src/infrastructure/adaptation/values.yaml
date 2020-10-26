@@ -1,0 +1,29 @@
+environment:
+serviceAccount:
+  adaptationname: adaptation-service-sa
+  janitorname: pod-janitor-sa
+
+volumemountpath:
+  source: "/var/source"
+  target: "/var/target"  
+  
+adaptationservice:
+  name: adaptation-service
+  namespace: icap-adaptation
+  image: peltops/icap-request-processing:v0.1
+  replicas: 1
+  amqpurl: "amqp://guest:guest@rabbitmq-service:5672/"
+  rolename: adaptation-service-role
+
+icapservice:
+  name: mvp-icap-service
+  applabel: adaptation
+  
+icapserviceconfig:
+  originalstorename: "original-store"
+  outcomequeuename: "transaction-outcome"
+
+podjanitor:
+  name: pod-janitor
+  namespace: icap-adaptation
+  rolename: janitor-role

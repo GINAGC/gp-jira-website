@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: squid-icap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: squid-icap
+  template:
+    metadata:
+      labels:
+        app: squid-icap
+    spec:
+      containers:
+      - name: squid-icap
+        image: peltops/squid-icap:v0.1
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 100m
+            memory: 500Mi
+          requests:
+            cpu: 50m
+            memory: 200Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: squid-service
+  labels:
+    app: squid-icap
+spec:
+  type: NodePort
+  selector:
+    app: squid-icap
+  ports:
+  - port: 3128
+    targetPort: 3128    
