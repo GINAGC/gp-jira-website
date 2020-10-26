@@ -4,9 +4,10 @@
 
 _____
 
-- Open createInstance.sh
-- Cutomize default values and run ```./createInstance.sh``` or send your custom values inline:
+- Open createInstance.sh and createSG.sh
+- Cutomize default values and run ```./createInstance.sh and ./createSG.sh``` or send your custom values inline:
 ```
+./createSG.sh GROUP_NAME DESC
 ./createInstance.sh KEY_NAME
 ```
 At end of running createInstance.sh script the output shows you an INSTANCE_ID. use it for removing instance.
