@@ -30,7 +30,7 @@
     git clone --recursive https://github.com/k8-proxy/k8-reverse-proxy.git
     git clone https://github.com/k8-proxy/gp-jira-website
     wget https://github.com/filetrust/Glasswall-Rebuild-SDK-Evaluation/releases/download/1.117/libglasswall.classic.so -O k8-reverse-proxy/stable-src/c-icap/Glasswall-Rebuild-SDK-Evaluation/Linux/Library/libglasswall.classic.so
-    cp -rf gp-jira-website/* k8-reverse-proxy/stable-src/
+    cp -rf gp-jira-website/atlassian.net/local-dns-changes/* k8-reverse-proxy/stable-src/
     cd k8-reverse-proxy/stable-src/
   ```
 
