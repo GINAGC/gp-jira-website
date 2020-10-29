@@ -72,3 +72,11 @@
 - https://glasswall.atlassian.net/
 
 - ** Please remember adding `CA.crt` to your browser/system ssl trust store.
+
+  ## Debug usefull commands
+  ```bash
+    docker-compose exec nginx /bin/bash
+	docker-compose exec squid /bin/bash
+	docker-compose down
+	docker rmi $(docker images -a -q)
+  ```
