@@ -71,7 +71,7 @@
 - https://os-summit.atlassian.net/
 - https://glasswall.atlassian.net/
 
-- ** Please remember adding `CA.crt` to your browser/system ssl trust store.
+- ** Please remember adding `CA.cer` to your browser/system ssl trust store.
 
   ## Debug usefull commands
   ```bash
