@@ -1,4 +1,4 @@
-# Reverse proxy configuration for mariusztst.atlassian.net, os-summit.atlassian.net, glasswall.atlassian.net - 
+# Reverse proxy configuration for mariusztst.atlassian.net, os-summit.atlassian.net, glasswall.atlassian.net via mariusztst.atlassian.net.glasswall-icap.com, os-summit.atlassian.net.glasswall-icap.com, glasswall.atlassian.net.glasswall-icap.com
 
 ## Requirements
 
