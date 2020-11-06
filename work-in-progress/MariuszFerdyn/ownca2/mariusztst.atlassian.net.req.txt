@@ -1,0 +1,24 @@
+[ req ]
+default_bits       = 4096
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+
+[ req_distinguished_name ]
+countryName                 = PL
+countryName_default         = PL
+stateOrProvinceName         = Mazowieckie
+stateOrProvinceName_default = Mazowieckie
+localityName                = Warsaw
+localityName_default        = Warsaw
+organizationName            = fast-sms.net
+organizationName_default    = fast-sms.net
+commonName                  = mariusztst.atlassian.net
+commonName_max              = 64
+commonName_default          = mariusztst.atlassian.net
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1   = mariusztst.atlassian.net
+DNS.2   = *.atlassian.net
