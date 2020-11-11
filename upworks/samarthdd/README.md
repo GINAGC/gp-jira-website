@@ -25,13 +25,14 @@
     6.Run following commands
         mkdir jira_proxy
         cd jira_proxy/
-        https://github.com/k8-proxy/s-k8-proxy-rebuild
-        https://github.com/k8-proxy/k8-reverse-proxy
+        git clone https://github.com/k8-proxy/s-k8-proxy-rebuild
+        git clone https://github.com/k8-proxy/k8-reverse-proxy
         
     7. Add certificate
     
         git clone https://github.com/k8-proxy/gp-engineering-website
         wget https://github.com/filetrust/sdk-rebuild-eval/raw/master/libs/rebuild/linux/libglasswall.classic.so -O k8-reverse-proxy/stable-src/c-icap/Glasswall-Rebuild-SDK-Evaluation/Linux/Library/libglasswall.classic.so
+        
     8. Copy openssl.cnf and govproxy.env to gp-engineering-website/
     
     9.Run below command and create cert
