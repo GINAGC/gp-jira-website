@@ -1,6 +1,5 @@
-#Atlassian Jira Glasswall Proxy Site
-
-##Steps 
+# Atlassian Jira Glasswall Proxy Site
+## Steps 
 
     1.Launch Rancher
 
