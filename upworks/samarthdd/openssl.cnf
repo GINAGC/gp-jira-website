@@ -1,0 +1,35 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+
+[req_distinguished_name]
+countryName = GB
+countryName_default = GB
+stateOrProvinceName = London
+stateOrProvinceName_default = London
+localityName = 
+localityName_default = 
+organizationalUnitName = Glasswall Solutions Ltd.
+organizationalUnitName_default = Glasswall Solutions Ltd.
+commonName = Glasswall Solutions Ltd.
+commonName_default = Glasswall Solutions Ltd.
+commonName_max = 64
+
+[ v3_req ]
+# Extensions to add to a certificate request
+#basicConstraints = CA:FALSE
+keyUsage = critical, digitalSignature, keyAgreement
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = *.id.atlassian.com.glasswall-icap.com
+DNS.2 = *.api.media.atlassian.com.glasswall-icap.com
+DNS.3 = *.samarthdd.atlassian.net.glasswall-icap.com
+DNS.4 = *.os-summit.atlassian.net.glasswall-icap.com
+DNS.2 = id.atlassian.com.glasswall-icap.com
+DNS.6 = os-summit.atlassian.net.glasswall-icap.com
+DNS.7 = api.media.atlassian.com.glasswall-icap.com
+DNS.8 = samarthdd.atlassian.net.glasswall-icap.com
+
+
