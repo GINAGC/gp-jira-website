@@ -10,6 +10,36 @@
 
 > *WSL (Windows Subsystem Linux) is not supported
 
+## Preparation
+
+We needed to check the website requests to check domains of interest, (domains that should be proxied), which typically are:
+
+- Website main domain and www subdomain (if applicable)
+
+- Domains used in redirects between website pages (example: authentication redirections)
+
+- Domains that hosts files that should be rebuilt against Glasswall rebuild engine
+
+  ### Finding domains of interest
+
+- Open a browser that included dev tools (i.e : **Mozilla Firefox**)
+
+- Open dev tools and switch to **Network** tab (CTRL+SHIFT+E in **Firefox**)
+
+- Visit target website main page, surf the website and try to download files while watching requested domains 
+
+- Save domains in question to be used in configuration
+
+### Configuration
+
+Tweak **gwproxy.env** according to our configuration (a pre-configured file already included in the repository), This is a variables definition example: 
+
+- `ROOT_DOMAIN`: the domain appended to the original website domain, typically: glasswall-icap.com
+- `ALLOWED_DOMAINS` : Comma separated domains accepted by the proxy, typically this should be domains of interest (figured out in the previous step) with the `ROOT_DOMAIN` value appended
+- `ICAP_URL` : the URL of the ICAP server either running on a docker on the same machine or through a load-balancer server.
+- `SQUID_IP` IP address of squid proxy, used by nginx, should be only changed on advanced usage of the docker image (example: Kubernetes)
+- `SUBFILTER_ENV`: Space separated text substitution rules in response body, formatted as **match,replace** , used for URL rewriting as in **.gov.uk,.gov.uk.glasswall-icap.com**
+
 ## Installation
 
 - Execute the following to install the dependencies mentioned above
@@ -47,36 +77,46 @@
     docker-compose up -d --force-recreate --build
   ```
   
-  You will need to use this command after every change to any of the files.
+  From now on, you will need to use this command after every change to any of the configuration files **gwproxy.env**, **subfilter.sh**, **docker-compose.yaml**, if any.
+  
+  ## Troubleshooting
+
+  Check if docker service is active   
+  
+  ```bash
+    systemctl status docker
+  ```
+  
+  Check if containers are up and running (not Restarting...)
+  
+  ```bash
+  docker-compose ps
+  ```
+  
+  If squid or nginx is not started correctly, then configuration parameters in `gwproxy.env` has been modified, execute:
+  
+  ```bash
+  docker-compose up -d --force-recreate
+  ```
   
   ## Client configuration
-
+  
 - Add hosts records to your client system hosts file ( i.e **Windows**: C:\Windows\System32\drivers\etc\hosts , **Linux, macOS and  Unix-like:** /etc/hosts ) as follows
   
   ```
-  127.0.0.1 mariusztst.atlassian.net
-  127.0.0.1 os-summit.atlassian.net
-  127.0.0.1 glasswall.atlassian.net
-  127.0.0.1 api.media.atlassian.com
+  127.0.0.1 mariusztst.atlassian.net os-summit.atlassian.net glasswall.atlassian.net api.media.atlassian.com
   ```
   
-  In case the machine running the project is not your local computer, replace **127.0.0.1** with the project host IP,
+  In case you are using a client other than machine running the project , replace **127.0.0.1** with the project host machine IP,
   
   make sure that tcp ports **80** and **443** are reachable and not blocked by firewall.
-  
-  ## Access the proxied site
-  
-  You can access the proxied site by browsing:
+
+* Move ***k8-reverse-proxy/stable-src/CA.cer** to your client machine and add it to your browser/system ssl trust store.
+
+## Access the proxied site
+
+You can access the proxied site by browsing:
+
 - https://mariusztst.atlassian.net/
 - https://os-summit.atlassian.net/
 - https://glasswall.atlassian.net/
-
-- ** Please remember adding `CA.cer` to your browser/system ssl trust store.
-
-  ## Debug usefull commands
-  ```bash
-    docker-compose exec nginx /bin/bash
-	docker-compose exec squid /bin/bash
-	docker-compose down
-	docker rmi $(docker images -a -q)
-  ```
